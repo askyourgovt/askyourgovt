@@ -1,0 +1,32 @@
+<? $document = $this->get('document'); ?>
+<? if ($document){ ?>
+<table class="table table-striped table-bordered">
+    <tbody>
+   <tr>
+        <td><a href="/question/id/<?=$document['question_id']?>"><?=$document['question_title']?></a></td>
+        <td><a href="<?=$document['document_path']?>"><i class="icon-download-alt"></i> Download</a>&nbsp;<span class="label label-warning"><?=$document['document_file_type']?></span>
+        </td>
+    </tr>
+        
+
+    <? if ($document['document_file_type'] == "pdf"){ ?>
+      <tr><td colspan=2><canvas id="the-canvas" style="border:1px solid black"></canvas></td></tr>
+    <tr >
+        <td colspan=2><button id="prev" onclick="goPrevious()">Previous</button> <button id="next" onclick="goNext()">Next</button> &nbsp; &nbsp;<span>Page: <span id="page_num"></span> / <span id="page_count"></span></span></td>              
+    </tr>                  
+      <script type="text/javascript" src="<?= $this->get('BASE'); ?>/gui/pdf/pdf.js"></script>
+      <script type="text/javascript">
+          var url = '<?=$document['document_path']?>';
+      </script>  
+      <script type="text/javascript" src="<?= $this->get('BASE'); ?>/gui/pdf/pdfview.js"></script>
+    <? } ?>
+
+    <? if ($document['document_file_type'] == "jpg" || $document['document_file_type'] == "png"){ ?>
+       <tr>
+        <td  colspan=2><img style="border:1px solid black" src="<?=$document['document_path']?>"/ width="600px"></td>
+      </tr>
+    <? } ?>
+
+    </tbody>
+</table>
+<? } ?>

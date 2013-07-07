@@ -1,0 +1,115 @@
+<? $all_reactions = $this->get('all_public_reactions'); ?>
+
+    <? foreach ($all_reactions as  $all_reaction_array): ?>
+        <table class="table table-striped table-bordered">
+            <tbody>
+ 
+                <? if ( intval($all_reaction_array['public_reation_type_id']) == 3 ) { ?>
+                  <tr>
+                      <td><i class="icon-comments"></i>&nbsp;<b>Blog Post</b>
+                        <?  $domain_name = parse_url($all_reaction_array['public_reaction_text']); ?>
+                        <br> <?=$domain_name['host']; ?>
+                      </td>
+                      <td>
+                        <a href="<?=$all_reaction_array['public_reaction_text']; ?>">
+                          <b><?=$all_reaction_array['public_reaction_title'];?></b></a>
+                        <br> <i class="icon-calendar"></i> <?=$all_reaction_array['public_reaction_date'];?>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td colspan=2><?=$all_reaction_array['public_reaction_note'];?></td>
+                  </tr>
+                  <tr>
+                    <td colspan=2>
+                        <b>Related Question: <a href='<?= $this->get('BASE'); ?>/question/id/<?=$all_reaction_array['question_id']?>'><?=$all_reaction_array['question_title']?></a> </b>
+                    </td>
+                   </tr>                  
+                <? } ?>
+                <? if ( intval($all_reaction_array['public_reation_type_id']) == 1 ) { ?>
+                  <tr>
+                      <td><i class="icon-book"></i>&nbsp;<b>News Article</b>
+                        <?  $domain_name = parse_url($all_reaction_array['public_reaction_text']); ?>
+                        <br> <?=$domain_name['host']; ?>
+                      </td>                   
+                      <td><a href="<?=$all_reaction_array['public_reaction_text']; ?>">
+                        <b><?=$all_reaction_array['public_reaction_title'];?></b></a>
+                        <br> <i class="icon-calendar"></i> <?=$all_reaction_array['public_reaction_date'];?>
+                      </td>
+                  </tr>
+                 
+                  <tr>
+                    <td colspan=2><?=$all_reaction_array['public_reaction_note'];?></td>
+                  </tr>
+                  <tr>
+                    <td colspan=2>
+                        <b>Related Question: <a href='<?= $this->get('BASE'); ?>/question/id/<?=$all_reaction_array['question_id']?>'><?=$all_reaction_array['question_title']?></a> </b>
+                    </td>
+                   </tr>                   
+                <? } ?>
+                  <? if ( intval($all_reaction_array['public_reation_type_id']) == 4 ) { ?>
+                  <tr>
+                      <td><i class="icon-twitter"></i>&nbsp;<b>Tweet</b>
+                        <?  $domain_name = parse_url($all_reaction_array['public_reaction_text']); ?>
+                        <br> <?=$domain_name['host']; ?>
+                      </td>
+                      <td><a href="<?=$all_reaction_array['public_reaction_text']; ?>">
+                        <b><?=$all_reaction_array['public_reaction_title'];?></b></a>
+                        <br> <i class="icon-calendar"></i> <?=$all_reaction_array['public_reaction_date'];?>
+
+                      </td>
+                  </tr>                
+                  <tr>
+                    <td colspan=2><?=$all_reaction_array['public_reaction_note'];?></td>
+                  </tr>
+                  <tr>
+                    <td colspan=2>
+                        <b>Related Question: <a href='<?= $this->get('BASE'); ?>/question/id/<?=$all_reaction_array['question_id']?>'><?=$all_reaction_array['question_title']?></a> </b>
+                    </td>
+                   </tr>                                    
+                <? } ?>                
+                  <? if ( intval($all_reaction_array['public_reation_type_id']) == 8 ) { ?>
+                  <tr>
+                      <td><i class="icon-facetime-video"></i>&nbsp;<b>Video</b>
+                        <?  $domain_name = parse_url($all_reaction_array['public_reaction_text']); ?>
+                        <br> <?=$domain_name['host']; ?>
+                      </td>
+                      <td><a href="<?=$all_reaction_array['public_reaction_text']; ?>">
+                        <b><?=$all_reaction_array['public_reaction_title'];?></b></a>
+                        <br> <i class="icon-calendar"></i> <?=$all_reaction_array['public_reaction_date'];?>
+
+                      </td>
+                  </tr>
+                  <tr>
+                    <td colspan=2><?=$all_reaction_array['public_reaction_note'];?></td>
+                  </tr>
+                  <tr>
+                    <td colspan=2>
+                        <b>Related Question: <a href='<?= $this->get('BASE'); ?>/question/id/<?=$all_reaction_array['question_id']?>'><?=$all_reaction_array['question_title']?></a> </b>
+                    </td>
+                   </tr>                  
+                <? } ?>                
+            </tbody>
+        </table>
+    <? endforeach; ?>
+
+<ul class="pager">
+  <? if($this->get('page_number') == 1 || $this->get('page_number') == 0){ ?>
+      <li class="next disabled">
+        <a href="#">Newer &rarr;</a>
+      </li>
+  <? }else{ ?>
+      <li class="next">
+        <a href="?<?=$this->get('newer'); ?>">Newer &rarr;</a>
+      </li>
+  <? } ?>
+<? if( intval($this->get('total_number')) < intval($this->get('count_per_page')) ){ ?>
+  <li class="previous disabled">
+    <a href="#">&larr; Older</a>
+  </li>
+<? }else{ ?>
+    <li class="previous">
+      <a href="?<?=$this->get('older'); ?>">&larr; Older</a>
+    </li>
+<? } ?>
+
+</ul>        

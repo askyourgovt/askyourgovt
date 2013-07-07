@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AskYourGovt&nbsp;|&nbsp;<?= $this->get('title'); ?>&nbsp;|&nbsp;<?= $this->get('sub_title'); ?></title>
+	<link rel="icon" href="<?= $this->get('BASE'); ?>/gui/favicon.ico" />
+	<link rel="shortcut icon" href="<?= $this->get('BASE'); ?>/gui/favicon.ico" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="<?= $this->get('BASE'); ?>/gui/bootstrap/css/bootstrap.css" rel="stylesheet">
+	<link href="<?= $this->get('BASE'); ?>/gui/bootstrap/css/bootstrap_spacelab.css" rel="stylesheet">
+	<link href="<?= $this->get('BASE'); ?>/gui/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+  <link rel="stylesheet" href="<?= $this->get('BASE'); ?>/gui/font-awesome/css/font-awesome.min.css">
+  <script src="<?= $this->get('BASE'); ?>/gui/jquery-1.9.1.min.js"></script>
+  <script src="<?= $this->get('BASE'); ?>/gui/bootstrap/js/bootstrap.js"></script>
+  <script src="https://login.persona.org/include.js"></script>
+</head>
+<body class="preview" data-spy="scroll" data-target=".subnav" data-offset="80">
+
+
+  <!-- Navbar
+    ================================================== -->
+  <div class="navbar navbar-inverse">
+    <div class="navbar-inner">
+      <div class="container" style="width: auto;">
+
+        <a class="brand" href="/">Ask Your Govt</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+           <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">About<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/rtiact">RTI Act</a></li>
+                <li><a href="/license">License</a></li>
+                <li><a href="/credits">Credits</a></li>
+              </ul>
+            </li>
+              <? foreach ($this->get('top_menu') as $key=>$value): ?>
+                <? if ($this->get('title')==$value): ?>
+                   <li class="active"><a href="<?= $this->get('BASE').($key=='/'?$key:('/'.$key)); ?>"><?= $value; ?></a></li>               
+                <? else: ?>
+                    <li><a href="<?= $this->get('BASE').($key=='/'?$key:('/'.$key)); ?>"><?= $value; ?></a></li>
+                <? endif; ?>                
+              <? endforeach; ?> 
+              <!-- <li><a href=""><img id="signin" src="<?= $this->get('BASE')?>/gui/img/plain_sign_in_blue.png"/></a></li> -->
+
+
+
+          </ul> 
+        </div><!-- /.nav-collapse -->
+      </div>
+    </div><!-- /navbar-inner -->
+  </div><!-- /navbar -->
+
+
+
+    <div class="container">
+
+
+<!-- Masthead
+================================================== -->
+<header class="jumbotron subhead" id="overview">
+  <div class="row">
+    <div class="span12">
+      <h2><?= $this->get('title'); ?></h2>
+      <p class="lead"><?= $this->get('sub_title'); ?></p>
+    </div>
+  </div>
+
+</header>
+
+
+<!-- Typography
+================================================== -->
+<section id="typography">
+
+  <!-- Headings & Paragraph Copy -->
+  <div class="row">
+
+    <div class="span3">
+      <div class="well">
+          <form class="form-horizontal" method="get" action="/questions">
+          <label>Question Status</label>
+          <select name="status" multiple="multiple">
+            <option value=1>Asked</option>
+            <option value=2>Answered</option>
+            <option value=3>Rejected</option>
+            <option value=4>Appeal</option>
+            <option value=5>Voting</option>
+          </select>
+          <br/><br/>
+          <label>Department</label>
+          <select name="dept" multiple="multiple">
+            <option value=1>Union Ministry of External Affairs</option>
+            <option value=2>Indian Statistical Institute</option>
+            <option value=3>Department of Information Technology</option>
+            <option value=4>Rashtrapati Bhawan</option>
+            <option value=5>Lok Sabha Secretariat</option>
+            <option value=6>Union Ministry of Home Affairs</option>
+            <option value=7>Ministry of Information and Broadcasting</option>
+            <option value=8>Department of Economic Affairs</option>
+            <option value=9>IT Department</option>
+            <option value=10>UIDAI</option>
+            <option value=11>Visvesvaraya Technological University</option>
+            <option value=12>Department of Food and Public Distribution</option>
+            <option value=13>Election Commision of India</option>
+            <option value=15>Prime Minister’s Office</option>
+
+          </select>
+          <br/><br/>
+          <button type="submit" class="btn" >Filter</button>
+          </form>
+      </div>
+<center>
+<span class='st_sharethis_large' displayText='ShareThis'></span>
+<span class='st_facebook_large' displayText='Facebook'></span>
+<span class='st_twitter_large' displayText='Tweet'></span>
+<span class='st_linkedin_large' displayText='LinkedIn'></span>
+<span class='st_googleplus_large' displayText='Google +'></span>
+<span class='st_email_large' displayText='Email'></span>
+</center>
+
+    </div>
+
+    <div class="span9">
+          <?= $this->get('sub_out_put'); ?>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+
+     <!-- Footer
+      ================================================== -->
+      <br><br><br>
+      <footer class="footer">
+        <p class="pull-left">Version: <a href="http://code.thejeshgn.com/askyourgovt/">LOCAL_CODE_VERSION</a>&nbsp;|&nbsp;<p class="pull-left">License: <a href="/license">ODBL and GPLv3</a>&nbsp;|&nbsp;<p class="pull-left"><a href="/credits">Credits</a>
+
+        <p class="pull-right"></p>
+      </footer>
+
+    </div><!-- /container -->
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-41192073-1', 'askyourgovt.in');
+  ga('send', 'pageview');
+
+</script>
+
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "a4a67f2c-cc15-489d-bb0c-0173bc71d84d", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+<script type="text/javascript" src="<?= $this->get('BASE'); ?>/gui/js/browser.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,203 @@
+<? $question = $this->get('question'); ?>
+<? $tab = $this->get('tab'); ?>
+<? if ($question){ ?>
+<? $all_responses = $this->get('all_responses'); ?>
+<? $all_reactions = $this->get('all_public_reactions'); ?>
+<? $all_departments = $this->get('all_departments'); ?>
+<? $all_locations = $this->get('all_locations'); ?>
+
+
+
+<ul class="nav nav-tabs" id="myTab">
+  <li class="<?=($tab=='question') ? 'active' : ''; ?>">
+    <a href="/question/id/<?=$question['question_id']?>">Question</a>
+  </li>
+  <li class="<?=($tab=='response') ? 'active' : ''; ?>">
+    <a href="/question/id/<?=$question['question_id']?>/response">
+      Response (<?=$this->get('response_count'); ?>)
+    </a>
+  </li>
+  <li class="<?=($tab=='reaction') ? 'active' : ''; ?>">
+    <a href="/question/id/<?=$question['question_id']?>/reaction">
+    Public Reaction (<?=$this->get('reaction_count'); ?>)
+  </a>
+  </li>
+</ul>
+
+
+<div class="tab-content">
+<? if($tab=='question') { ?>
+
+    <div class="tab-pane active" id="question">
+        <table class="table table-striped table-bordered">
+            <tbody>
+                <tr>
+                    <td><b>Department</b></td>
+                    <td> 
+                      <? foreach ($all_departments as  $dept): ?>
+                        <?=$dept['department_name']?>,&nbsp;
+                      <? endforeach; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Status</b></td>
+                    <td> <?=$question['status_name']?> </td>
+                </tr>
+                <tr>
+                    <td><b>Location</b></td>
+                    <td> 
+                      <? foreach ($all_locations as  $loc): ?>
+                        <?=$loc['location_name']?>,&nbsp;
+                      <? endforeach; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Asked by</b></td>
+
+                    <td> <a href="<?= $this->get('BASE'); ?>/user/<?=$question['user_name']?>"><?=$question['user_full_name']?></a> </td>
+                </tr>
+                <tr>
+                    <td><b>Asked on</b></td>
+                    <td> <?=$question['date_asked']?> </td>
+                </tr>
+                <tr>
+                    <td colspan="2"> <?=$question['question_text']?> </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+<?}else if($tab=='response') { ?>
+
+    <div class="tab-pane active" id="response">
+      <table class="table table-bordered">
+      <tbody>
+        <? foreach ($all_responses as  $response_array): ?>
+            <tr><td>
+              <table class="table table-striped table-bordered">
+                <tbody>
+                <tr>
+                    <td><b>On</b> <?=$response_array['date_of_response']?> </td>
+                </tr>
+                <tr>
+                    <td><?=$response_array['response_text']?> </td>
+                </tr>
+                <? $all_documents = $response_array['documents']; ?>
+                <? if( count($all_documents) > 0){ ?>
+                <tr>
+                    <td><b>Documents</b></td>
+                </tr>
+                <? } ?>
+                <? foreach ( $all_documents as  $doc): ?>
+                  <tr>
+                      <td><i class="icon-book"></i>&nbsp;<a href="/document/id/<?=$doc['document_id']?>"><?=$doc['document_title']?></a></td>
+                  </tr>
+                <? endforeach; ?>
+                </tbody>
+              </table>                
+            </td></tr>
+      <? endforeach; ?>
+            </tbody>
+        </table>    
+    </div>
+
+<?}else if($tab=='reaction') { ?>    
+    
+    <div class="tab-pane active" id="reaction">
+        <table class="table table-striped table-bordered">
+            <tbody>
+               <? foreach ($all_reactions as  $all_reaction_array): ?>
+ 
+                <? if ( intval($all_reaction_array['public_reation_type_id']) == 3 ) { ?>
+                  <tr>
+                      <td><i class="icon-comments"></i>&nbsp;<b>Blog Post</b>
+                        <?  $domain_name = parse_url($all_reaction_array['public_reaction_text']); ?>
+                        <br> <?=$domain_name['host']; ?>
+                      </td>
+                      <td>
+                        <a href="<?=$all_reaction_array['public_reaction_text']; ?>">
+                          <b><?=$all_reaction_array['public_reaction_title'];?></b></a>
+                        <br> <i class="icon-calendar"></i> <?=$all_reaction_array['public_reaction_date'];?>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td colspan=2><?=$all_reaction_array['public_reaction_note'];?></td>
+                  </tr>
+                <? } ?>
+                <? if ( intval($all_reaction_array['public_reation_type_id']) == 1 ) { ?>
+                  <tr>
+                      <td><i class="icon-book"></i>&nbsp;<b>News Article</b>
+                        <?  $domain_name = parse_url($all_reaction_array['public_reaction_text']); ?>
+                        <br> <?=$domain_name['host']; ?>
+                      </td>
+                      <td><a href="<?=$all_reaction_array['public_reaction_text']; ?>">
+                        <b><?=$all_reaction_array['public_reaction_title'];?></b></a>
+                        <br> <i class="icon-calendar"></i> <?=$all_reaction_array['public_reaction_date'];?>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td colspan=2><?=$all_reaction_array['public_reaction_note'];?></td>
+                  </tr>
+                <? } ?>
+                  <? if ( intval($all_reaction_array['public_reation_type_id']) == 4 ) { ?>
+                  <tr>
+                      <td><i class="icon-twitter"></i>&nbsp;<b>Tweet</b>
+                        <?  $domain_name = parse_url($all_reaction_array['public_reaction_text']); ?>
+                        <br> <?=$domain_name['host']; ?>
+                      </td>
+                      <td><a href="<?=$all_reaction_array['public_reaction_text']; ?>">
+                        <b><?=$all_reaction_array['public_reaction_title'];?></b></a>
+                        <br> <i class="icon-calendar"></i> <?=$all_reaction_array['public_reaction_date'];?>
+
+                      </td>
+                  </tr>
+                  <tr>
+                    <td colspan=2><?=$all_reaction_array['public_reaction_note'];?></td>
+                  </tr>
+                <? } ?>                
+                  <? if ( intval($all_reaction_array['public_reation_type_id']) == 8 ) { ?>
+                  <tr>
+                      <td><i class="icon-facetime-video"></i>&nbsp;<b>Video</b>
+                        <?  $domain_name = parse_url($all_reaction_array['public_reaction_text']); ?>
+                        <br> <?=$domain_name['host']; ?>
+                      </td>
+                      <td><a href="<?=$all_reaction_array['public_reaction_text']; ?>">
+                        <b><?=$all_reaction_array['public_reaction_title'];?></b></a>
+                        <br> <i class="icon-calendar"></i> <?=$all_reaction_array['public_reaction_date'];?>
+
+                      </td>
+                  </tr>
+                  <tr>
+                    <td colspan=2><?=$all_reaction_array['public_reaction_note'];?></td>
+                  </tr>
+                <? } ?>                
+
+             <? endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+
+<?}?>
+</div>
+
+
+
+<table class="table table-striped table-bordered">
+<tbody>
+    <tr><td>
+      <div class="btn-group">
+        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+          Report
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="/action/report/<?=$question['question_id']?>?comment=remove">Remove this question and details</a></li>
+          <li><a href="/action/report/<?=$question['question_id']?>?comment=annonymize">Annonymize it</a></li>
+        </ul>
+      </div>
+    </td></tr>
+</tbody>
+</table>
+
+
+<? } ?>
