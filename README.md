@@ -6,7 +6,9 @@ See more at: http://askyourgovt.in/about
 
 
 We have multiple synced GIT repositories, use whichever makes sense for you:  
-https://bitbucket.org/thejeshgn/askyourgovt
-https://github.com/thejeshgn/askyourgovt  
-http://code.thejeshgn.com/askyourgovt  
+https://bitbucket.org/thejeshgn/askyourgovt  
+https://github.com/thejeshgn/askyourgovt    
+http://code.thejeshgn.com/askyourgovt    
 
+For latest news you can follow my blog:  
+http://thejeshgn.com/tag/askyourgovt/  
