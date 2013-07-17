@@ -9,9 +9,17 @@
 	<link href="<?= $this->get('BASE'); ?>/gui/bootstrap/css/bootstrap_spacelab.css" rel="stylesheet">
 	<link href="<?= $this->get('BASE'); ?>/gui/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
   <link rel="stylesheet" href="<?= $this->get('BASE'); ?>/gui/font-awesome/css/font-awesome.min.css">
-  <script src="<?= $this->get('BASE'); ?>/gui/jquery-1.9.1.min.js"></script>
+  <script src="<?= $this->get('BASE'); ?>/gui/js/jquery-1.9.1.min.js"></script>
   <script src="<?= $this->get('BASE'); ?>/gui/bootstrap/js/bootstrap.js"></script>
   <script src="https://login.persona.org/include.js"></script>
+  <script>
+   <? if( $this->get('SESSION["user_email"]')  ): ?>
+      currentUser = '<?= $this->get('SESSION["user_email"]'); ?>';
+   <? else: ?>
+      currentUser = null;
+   <? endif; ?>
+
+  </script>
 </head>
 <body class="preview" data-spy="scroll" data-target=".subnav" data-offset="80">
 
@@ -29,11 +37,19 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">About<b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="/about">About Us</a></li>
-                <li><a href="/rtiact">RTI Act</a></li>
                 <li><a href="/license">License</a></li>
                 <li><a href="/credits">Credits</a></li>
               </ul>
             </li>
+             <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">RTI<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/rti-act">RTI Act</a></li>
+                  <li><a href="/rti-faq">RTI FAQ</a></li>
+                  <li><a href="/rti-jargon">RTI Jargon</a></li>
+                </ul>
+              </li>
+
               <? foreach ($this->get('top_menu') as $key=>$value): ?>
                 <? if ($this->get('title')==$value): ?>
                    <li class="active"><a href="<?= $this->get('BASE').($key=='/'?$key:('/'.$key)); ?>"><?= $value; ?></a></li>               
@@ -41,10 +57,17 @@
                     <li><a href="<?= $this->get('BASE').($key=='/'?$key:('/'.$key)); ?>"><?= $value; ?></a></li>
                 <? endif; ?>                
               <? endforeach; ?> 
-              <!-- <li><a href=""><img id="signin" src="<?= $this->get('BASE')?>/gui/img/plain_sign_in_blue.png"/></a></li> -->
-
-
-
+              <? if( $this->get('SESSION["user_email"]')  ): ?>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">You<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                  <li><a href="#"><?=$this->get('SESSION["user_email"]'); ?></a></li>
+                  <li><a href="#" id="signout">Sign out</a></li>
+                  </ul>
+                </li>  
+              <? else: ?>
+                <li><a href="#" id="signin">Sign In</a></li>            
+              <? endif; ?>
           </ul> 
         </div><!-- /.nav-collapse -->
       </div>
@@ -78,37 +101,48 @@
 
     <div class="span3">
       <div class="well">
-          <form class="form-horizontal" method="get" action="/questions">
-          <label>Question Status</label>
-          <select name="status" multiple="multiple">
-            <option value=1>Asked</option>
-            <option value=2>Answered</option>
-            <option value=3>Rejected</option>
-            <option value=4>Appeal</option>
-            <option value=5>Voting</option>
-          </select>
-          <br/><br/>
-          <label>Department</label>
-          <select name="dept" multiple="multiple">
-            <option value=1>Union Ministry of External Affairs</option>
-            <option value=2>Indian Statistical Institute</option>
-            <option value=3>Department of Information Technology</option>
-            <option value=4>Rashtrapati Bhawan</option>
-            <option value=5>Lok Sabha Secretariat</option>
-            <option value=6>Union Ministry of Home Affairs</option>
-            <option value=7>Ministry of Information and Broadcasting</option>
-            <option value=8>Department of Economic Affairs</option>
-            <option value=9>IT Department</option>
-            <option value=10>UIDAI</option>
-            <option value=11>Visvesvaraya Technological University</option>
-            <option value=12>Department of Food and Public Distribution</option>
-            <option value=13>Election Commision of India</option>
-            <option value=15>Prime Minister’s Office</option>
+        <? if( $this->get('side_bar') == 'faq' ): ?>
+      <div class="bs-docs-sidebar">
+        <ul class="nav nav-list bs-docs-sidenav affix-top">
+          <li><a href="#about_rti_act"><i class="icon-chevron-right"></i> About RTI Act</a></li>
+          <li><a href="#rti_application"><i class="icon-chevron-right"></i> RTI Application Process</a></li>
+          <li><a href="#appeal_process"><i class="icon-chevron-right"></i> Appeal Process</a></li>
+        </ul>
+      </div>
 
-          </select>
-          <br/><br/>
-          <button type="submit" class="btn" >Filter</button>
-          </form>
+        <? else: ?>
+            <form class="form-horizontal" method="get" action="/questions">
+            <label>Question Status</label>
+            <select name="status" multiple="multiple">
+              <option value=1>Asked</option>
+              <option value=2>Answered</option>
+              <option value=3>Rejected</option>
+              <option value=4>Appeal</option>
+              <option value=5>Voting</option>
+            </select>
+            <br/><br/>
+            <label>Department</label>
+            <select name="dept" multiple="multiple">
+              <option value=1>Union Ministry of External Affairs</option>
+              <option value=2>Indian Statistical Institute</option>
+              <option value=3>Department of Information Technology</option>
+              <option value=4>Rashtrapati Bhawan</option>
+              <option value=5>Lok Sabha Secretariat</option>
+              <option value=6>Union Ministry of Home Affairs</option>
+              <option value=7>Ministry of Information and Broadcasting</option>
+              <option value=8>Department of Economic Affairs</option>
+              <option value=9>IT Department</option>
+              <option value=10>UIDAI</option>
+              <option value=11>Visvesvaraya Technological University</option>
+              <option value=12>Department of Food and Public Distribution</option>
+              <option value=13>Election Commision of India</option>
+              <option value=15>Prime Minister’s Office</option>
+
+            </select>
+            <br/><br/>
+            <button type="submit" class="btn" >Filter</button>
+            </form>
+        <? endif; ?>      
       </div>
 <center>
 <span class='st_sharethis_large' displayText='ShareThis'></span>

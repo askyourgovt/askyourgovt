@@ -108,10 +108,6 @@ strong{font-weight:bold;}
 em{font-style:italic;}
 cite{font-style:normal;}
 .muted{color:#bbbbbb;}
-.text-warning{color:#ffffff;}
-.text-error{color:#ffffff;}
-.text-info{color:#ffffff;}
-.text-success{color:#ffffff;}
 h1,h2,h3,h4,h5,h6{margin:10.5px 0;font-family:inherit;font-weight:normal;line-height:1;color:inherit;text-rendering:optimizelegibility;}h1 small,h2 small,h3 small,h4 small,h5 small,h6 small{font-weight:normal;line-height:1;color:#bbbbbb;}
 h1{font-size:36px;line-height:40px;}
 h2{font-size:30px;line-height:40px;}

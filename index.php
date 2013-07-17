@@ -3,7 +3,7 @@ $app=require __DIR__.'/lib/base.php';
 require __DIR__.'/external_lib/markdown.php';
 $app->set('AUTOLOAD','inc/;inc/temp/');
 $app->set('GUI','gui/');
-$app->set('DEBUG',1);
+$app->set('DEBUG',3);
 $app->set('top_menu',
 	array(
         'questions'=>'Questions',
@@ -28,7 +28,10 @@ $app->route('GET /','Main->home');
 $app->route('GET /about','Main->about');
 $app->route('GET /contact','Main->contact');
 $app->route('GET /license','Main->license');
-$app->route('GET /rtiact','Main->rtiact');
+$app->route('GET /rti-act','Main->rtiact');
+$app->route('GET /rti-faq','Main->rtifaq');
+$app->route('GET /rti-jargon','Main->rtijargon');
+
 $app->route('GET /credits','Main->credits');
 $app->route('GET /news','Main->news');
 
@@ -39,8 +42,12 @@ $app->route('GET /question/id/@question_id/@tab','Question->question_by_id');
 
 $app->route('GET /user/@user_name','Users->profile');
 
-$app->route('GET /document/id/@document_id','Document->document_view_by_id');
+$app->route('POST /auth/login','Users->login');
+$app->route('POST /auth/logout','Users->logout');
+$app->route('GET /auth/logout','Users->logout');
 
+
+$app->route('GET /document/id/@document_id','Document->document_view_by_id');
 $app->route('GET /batch/question_meta_update','Batch->question_meta_update');
 $app->route('GET /batch/users_meta_update','Batch->users_meta_update');
 

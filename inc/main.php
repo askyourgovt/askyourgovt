@@ -48,6 +48,29 @@ class Main extends F3instance {
 		echo $this->render('basic/main.html');
 	}
 
+	function rtifaq() {
+		$this->set('title','RTI FAQ');
+		//$this->set('sub_title','Frequently Asked Questions');
+		$this->set('side_bar','faq');
+		$this->set('sub','sub_rtifaq.html');
+		$out=$this->render('basic/layout.html');		
+		$this->set('sub_out_put',$out);
+		$this->set('LANGUAGE','en-US');		
+		echo $this->render('basic/main.html');
+	}
+
+	function rtijargon() {
+		$this->set('title','RTI Jargon File');
+		//$this->set('sub_title','Frequently Asked Questions');
+		$this->set('sub','sub_rti_jargon.html');
+		$out=$this->render('basic/layout.html');		
+		$this->set('sub_out_put',$out);
+		$this->set('LANGUAGE','en-US');		
+		echo $this->render('basic/main.html');
+	}
+
+
+
 	function credits() {
 		$this->set('title','Credits');
 		$this->set('sub_title','Thanks for making AskYourGovt.IN possible');
