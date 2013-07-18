@@ -867,3 +867,10 @@ div.subnav .nav>li.dropdown.open>.dropdown-toggle{border-left:1px solid whiteSmo
 .show{display:block;}
 .invisible{visibility:hidden;}
 .affix{position:fixed;}
+.footer {
+	padding: 30px 0;
+	margin-top: 70px;
+	border-top: 1px solid #E5E5E5;
+	background-color: whiteSmoke;
+	min-height: 100%;
+}
