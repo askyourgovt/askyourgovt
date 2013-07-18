@@ -30,7 +30,7 @@ $app->route('GET /contact','Main->contact');
 $app->route('GET /license','Main->license');
 $app->route('GET /rti-act','Main->rtiact');
 $app->route('GET /rti-faq','Main->rtifaq');
-$app->route('GET /rti-jargon','Main->rtijargon');
+$app->route('GET /rti-dictionary','Main->rtidictionary');
 
 $app->route('GET /credits','Main->credits');
 $app->route('GET /news','Main->news');
