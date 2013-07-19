@@ -7,6 +7,7 @@ $app->set('DEBUG',3);
 $app->set('top_menu',
 	array(
         'questions'=>'Questions',
+        'ask'=>'Ask',
         'news'=>'News Stream',
 		'contact'=>'Contact'
 	)
@@ -25,6 +26,7 @@ $app->set('ASKYOURGOVT_DOCS_PATH','./docs_test/');
 
 
 $app->route('GET /','Main->home');
+
 $app->route('GET /about','Main->about');
 $app->route('GET /contact','Main->contact');
 $app->route('GET /license','Main->license');
