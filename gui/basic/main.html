@@ -2,6 +2,11 @@
 <html>
 <head>
 	<title>AskYourGovt&nbsp;|&nbsp;<?= $this->get('title'); ?>&nbsp;|&nbsp;<?= $this->get('sub_title'); ?></title>
+  <meta name="description"  content="<?= $this->get('title'); ?>&nbsp;|&nbsp;<?= $this->get('sub_title'); ?>">
+  <meta property="og:title" content="<?= $this->get('title'); ?>&nbsp;|&nbsp;<?= $this->get('sub_title'); ?>"/>
+  <meta property="og:description" content="<?= $this->get('title'); ?>&nbsp;|&nbsp;<?= $this->get('sub_title'); ?>"/>
+  <meta property="og:site_name" content="AskYourGovt.IN"/>
+
 	<link rel="icon" href="<?= $this->get('BASE'); ?>/gui/favicon.ico" />
 	<link rel="shortcut icon" href="<?= $this->get('BASE'); ?>/gui/favicon.ico" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
