@@ -42,6 +42,7 @@ class Main extends F3instance {
 		$this->set('title','RTI Act');
 		$this->set('sub_title','The Right To Information Act, 2005');
 		$this->set('sub','sub_rtiact.html');
+		$this->set('side_bar','rti-act');
 		$out=$this->render('basic/layout.html');		
 		$this->set('sub_out_put',$out);
 		$this->set('LANGUAGE','en-US');		
