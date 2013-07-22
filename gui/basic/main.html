@@ -141,6 +141,24 @@
                 </div>
                 <div style="clear:both"></div>
            </div>
+    <?  elseif( $this->get('side_bar') == 'constitution' ): ?>
+          
+
+              <ul class="pager">
+                <? if($this->get('page_no') < 479 ){ ?>
+                    <li class="next">
+                      <a href="/constitution/page/<?= intval($this->get('page_no'))+1; ?>">Next &rarr;</a>
+                    </li>
+                <? } ?>
+              <? if( $this->get('page_no') < 479 && $this->get('page_no') > 1  ){ ?>
+                  <li class="previous">
+                       <a href="/constitution/page/<?= intval($this->get('page_no'))-1; ?>">Previous &rarr;</a>
+                  </li>
+                <? } ?>
+              </ul>
+
+              <p>This book is  one of 1,000 photolithographic reproductions of the Constitution of the Republic of India, which came into effect on January 26, 1950, after being approved by the Constituent Assembly on November 26, 1949. The original of this elaborate edition took nearly five years to produce. It is signed by the framers of the constitution, most of whom are regarded as the founders of the Republic of India. The original of the book is kept in a special helium-filled case in the Library of the Parliament of India. The illustrations represent styles from the different civilizations of the subcontinent, ranging from the prehistoric Mohenjodaro, in the Indus Valley, to the present. The calligraphy in the book was done by Prem Behari Narain Raizda. It was illuminated by Nandalal Bose and other artists, published by Dehra Dun, and photolithographed at the Survey of India Offices.</p>
+              Source : <a href="http://www.wdl.org/en/item/2672/">LOC and WDL</a>
 
     <?  elseif( $this->get('side_bar') == 'faq' ): ?>
           <div class="bs-docs-sidebar">
@@ -295,7 +313,7 @@
           <div class="span4">
           </div>
           <div class="span2"><br/>
-            <a href="http://en.wikipedia.org/wiki/Preamble_to_the_Constitution_of_India">We, The people of India</a>
+            <a href="/constitution/page/7">We, The people of India</a>
           </div>
           <div class="span5">
           </div> 

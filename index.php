@@ -33,6 +33,8 @@ $app->route('GET /license','Main->license');
 $app->route('GET /rti-act','Main->rtiact');
 $app->route('GET /rti-faq','Main->rtifaq');
 $app->route('GET /rti-dictionary','Main->rtidictionary');
+$app->route('GET /constitution','Main->constitution');
+$app->route('GET /constitution/page/@page_no','Main->constitution');
 
 $app->route('GET /credits','Main->credits');
 $app->route('GET /news','Main->news');
