@@ -67,7 +67,8 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">You<b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                  <li><a href="#"><?=$this->get('SESSION["user_email"]'); ?></a></li>
+                  <li><a href="/user/<?=$this->get('SESSION["user_name"]'); ?>">Public Profile</a></li>
+                  <li><a href="/auth/user/edit/<?=$this->get('SESSION["user_name"]'); ?>">Edit Profile</a></li>
                   <li><a href="#" id="signout">Sign out</a></li>
                   </ul>
                 </li>  
@@ -247,7 +248,23 @@
     </div>
 
     <div class="span9">
+
+<? if( $this->get('SESSION["user_email"]')  && $this->get('SESSION["user_name"]') == NULL  ): ?>
+      <form  method="post" action="/auth/register">
+        You need to choose an user name before proceeding.<br>
+        <b><div id="check_user_name_msg"></div></b><br>
+        User Name: <input name="user_name" type="text" id="user_name" /><br>
+        <input type="hidden" id="user_name_hid" name="user_name_hid" /><br>
+        <button onclick="checkUserNameAvailability()" type="button" id="check_user_name" class="btn" >Check Availability</button>
+        <button style="display:none;" type="submit"  class="btn" id="submit_user_name" >Save</button>
+      </form>
+
+<? else: ?>
           <?= $this->get('sub_out_put'); ?>
+<? endif; ?>
+    
+
+
     </div>
 
   </div>

@@ -89,6 +89,15 @@ function login(){
         $result = $persona->verifyAssertion($_POST['assertion']);
         if ($result->status === 'okay') {
             $session = $this->set('SESSION["user_email"]', $result->email);
+            $this->set('SESSION["user_name"]', NULL);
+
+            $sql_query = 'select user_name from user where email=:email';
+            $sql_query_params = array("email"=> $result->email );
+            $ASKYOURGOVT_DB=F3::get('ASKYOURGOVT_DB');
+            $ASKYOURGOVT_DB->exec($sql_query, $sql_query_params);
+            foreach (F3::get('ASKYOURGOVT_DB->result') as $row){
+                $this->set('SESSION["user_name"]', $row['user_name']);
+            }
             echo $result->email;
         } else {
             header('HTTP/1.1 500 Internal Server Error');
@@ -99,6 +108,50 @@ function login(){
         echo "error";
     }
 }
+
+function checkUserNameAvailability(){
+    if ($this->get('SESSION["user_email"]')  && $this->get('SESSION["user_name"]') == NULL){
+        if (isset($_GET['user_name'])){
+            $user_name = $_GET['user_name'];
+            $sql_query = ' select * from user where user_name =:user_name';
+            $sql_query_params = array("user_name"=>$user_name);
+            $ASKYOURGOVT_DB=F3::get('ASKYOURGOVT_DB');
+            $ASKYOURGOVT_DB->exec($sql_query, $sql_query_params);
+            $row_exists = 0;
+            foreach (F3::get('ASKYOURGOVT_DB->result') as $row){
+                $row_exists = 1;
+            }
+            if($row_exists === 1){
+                echo "error";        
+            }else{
+                echo "okay";
+            }
+        }           
+    }else{
+        echo "error";        
+    }
+}
+
+function register(){
+    if ($this->get('SESSION["user_email"]')  && $this->get('SESSION["user_name"]') == NULL){
+        if (isset($_POST['user_name_hid'])){
+            $user_name = $_POST['user_name_hid'];
+            //print $user_name;
+            $sql_query = 'insert into user("user_name", "email","user_full_name") values(:user_name,:email,:user_full_name)';
+            $sql_query_params = array("user_name"=>$user_name,"email"=>  $this->get('SESSION["user_email"]'), "user_full_name"=> "");
+            print_r($sql_query_params);
+            $ASKYOURGOVT_DB=F3::get('ASKYOURGOVT_DB');
+            $row = $ASKYOURGOVT_DB->exec($sql_query,$sql_query_params);
+            if($row > 0){
+                $this->set('SESSION["user_name"]', $user_name);
+                $this->reroute('/auth/user/'.$user_name);
+            }
+        }           
+    }else{
+            $this->reroute('/');
+    }
+}
+
 
 function logout(){
     $session = $this->set('SESSION["user_email"]', NULL);

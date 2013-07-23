@@ -48,3 +48,27 @@ if (signoutLink) {
 }
 
  
+function checkUserNameAvailability(){
+   $.ajax({
+          type: 'GET',
+          url: '/auth/checkUserNameAvailability', 
+          data:{user_name:$('#user_name').val()}
+        }).done(function ( data ) {
+          if( console && console.log ) {
+            console.log("Sample of data:", data);
+          }
+
+          if(data == "okay"){
+              $('#check_user_name').hide();
+              $('#check_user_name_msg_label').show();
+              $('#submit_user_name').show();
+              $('#user_name_hid').val($('#user_name').val());              
+              $('#check_user_name_msg').text("Availabe. Go ahead and save.");
+              $('#user_name').attr('disabled', 'disabled');
+          }else{
+              $('#check_user_name_msg_label').show();
+              $('#check_user_name_msg').text("Not Available. Please try another user name.");
+          }
+      });
+   return false;
+}
