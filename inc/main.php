@@ -71,6 +71,26 @@ class Main extends F3instance {
 		echo $this->render('basic/main.html');
 	}
 
+	function constitution() {
+		$this->set('title','The Constitution of India');
+		$this->set('sub_title','The Constitution of the Republic of India');
+		$this->set('side_bar','constitution');
+		$page_no = intval($this->get('PARAMS["page_no"]'));
+		if($page_no < 1 || $page_no > 479 ){
+			$page_no = 1;
+		}
+		
+		$url="http://content.wdl.org/2672_1_".$page_no.".png";
+		$this->set('url', $url);
+		$this->set('page_no', $page_no);
+		$this->set('sub','sub_constitution.html');
+		$out=$this->render('basic/layout.html');		
+		$this->set('sub_out_put',$out);
+		$this->set('LANGUAGE','en-US');		
+		echo $this->render('basic/main.html');
+	}
+
+
 
 
 	function credits() {
