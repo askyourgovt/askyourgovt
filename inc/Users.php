@@ -144,7 +144,7 @@ function register(){
             $row = $ASKYOURGOVT_DB->exec($sql_query,$sql_query_params);
             if($row > 0){
                 $this->set('SESSION["user_name"]', $user_name);
-                $this->reroute('/auth/user/'.$user_name);
+                $this->reroute('/auth/user/edit/');
             }
         }           
     }else{
@@ -153,8 +153,62 @@ function register(){
 }
 
 
+
+
+function editProfile(){
+    if ( $this->get('SESSION["user_email"]')  && $this->get('SESSION["user_name"]') ){
+        if (isset($_POST['save_profile'])) {
+            $user_full_name = $_POST['user_full_name'];
+            $website = $_POST['website'];
+            $about = strip_tags($_POST['about']);
+            $newsletter = intval($_POST['newsletter']);
+            $email = $this->get('SESSION["user_email"]');
+            $sql_query_params = array("email"=>$email, "user_full_name"=> $user_full_name, "website"=>$website,"about"=>$about, "newsletter"=>$newsletter);
+            $ASKYOURGOVT_DB=F3::get('ASKYOURGOVT_DB');
+            $sql_query = 'update user set user_full_name=:user_full_name, website=:website, about=:about, newsletter=:newsletter where email=:email';
+            $row = $ASKYOURGOVT_DB->exec($sql_query,$sql_query_params);
+            $this->reroute('/auth/user/edit/?update=1');
+        }else{
+            $email = $this->get('SESSION["user_email"]');
+            $sql_query = 'select * from user where email=:email';
+            $sql_query_params = array("email"=>$email);
+            $ASKYOURGOVT_DB=F3::get('ASKYOURGOVT_DB');
+            $row = $ASKYOURGOVT_DB->exec($sql_query,$sql_query_params);
+            $user_info = array();
+            foreach (F3::get('ASKYOURGOVT_DB->result') as $row){
+                $user_info['user_name']=$row['user_name'];
+                $user_info['email']=$row['email'];
+                $user_info['user_full_name']=$row['user_full_name'];
+                $user_info['website']=$row['website'];
+                $user_info['newsletter']=$row['newsletter'];
+                $user_info['about']=$row['about'];
+            }
+            
+            if(isset($_GET['update'])){
+                $this->set('message', 'Your profile has been updated.');
+            }else{
+                $this->set('message', '');
+            }
+            $this->set('title', 'Edit Profile');
+            $this->set('user_info',$user_info);
+            $this->set('sub','sub_edit_profile.html');
+            $out=$this->render('basic/layout.html');        
+            $this->set('sub_out_put',$out);
+            $this->set('LANGUAGE','en-US');     
+            echo $this->render('basic/main.html');
+        }
+
+    }else{
+        echo "You need to be logged in.";
+    }
+}
+
+
+
 function logout(){
     $session = $this->set('SESSION["user_email"]', NULL);
+    $session = $this->set('SESSION["user_name"]', NULL);
+
 }
 
 }//end of Users class

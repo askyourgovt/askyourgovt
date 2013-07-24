@@ -1,0 +1,40 @@
+ <? $user_info = $this->get('user_info'); ?>
+<form method="post" action="/auth/user/edit">
+ <table class="table table-striped table-bordered">
+    <tbody>
+    <tr>
+    	<td>Name:</td>
+     	<td><input name="user_full_name" type="text" id="user_full_name" value="<?=$user_info['user_full_name']?>" /></td>
+    </tr>
+    <tr>
+    	<td>Website:</td>
+     	<td><input name="website" type="text" id="website" value="<?=$user_info['website']?>" /></td>
+    </tr>
+    <tr>
+    	<td>Subscribe to Newsletter:</td>
+     	<td>
+     		<select name="newsletter" id="newsletter">
+				<? if($user_info['newsletter'] == 0 ){?>
+     			<option value=0 selected>No</option>
+     			<option value=1 >Yes</option>
+     			<? }else{?>
+     			<option  value=0>No</option>
+     			<option value=1 selected>Yes</option>
+     			<? } ?>
+     	
+     		</select>
+     	</td>
+    </tr>
+    <tr>
+    	<td>About:</td>
+     	<td><textarea name="about"  id="about" cols="100" rows="5"><?=$user_info['about']?></textarea></td>
+    </tr>
+    <tr>
+    	<td><b><?=$this->get('message'); ?></b></td>
+    	<td>
+    		<button name="save_profile" type="submit"  class="btn" id="save_profile" >Save Profile</button>
+    	</td>
+    </tr>
+  </tbody>
+</table>
+</form>

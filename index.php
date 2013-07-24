@@ -51,6 +51,8 @@ $app->route('POST /auth/logout','Users->logout');
 $app->route('GET /auth/logout','Users->logout');
 $app->route('GET /auth/checkUserNameAvailability','Users->checkUserNameAvailability');
 $app->route('POST /auth/register','Users->register');
+$app->route('GET /auth/user/edit','Users->editProfile');
+$app->route('POST /auth/user/edit','Users->editProfile');
 
 
 $app->route('GET /document/id/@document_id','Document->document_view_by_id');
