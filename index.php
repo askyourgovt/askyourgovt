@@ -3,7 +3,7 @@ $app=require __DIR__.'/lib/base.php';
 require __DIR__.'/external_lib/markdown.php';
 $app->set('AUTOLOAD','inc/;inc/temp/');
 $app->set('GUI','gui/');
-$app->set('DEBUG',3);
+$app->set('DEBUG',4);
 $app->set('top_menu',
 	array(
         'questions'=>'Questions',

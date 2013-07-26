@@ -65,11 +65,20 @@
               <? endforeach; ?> 
               <? if( $this->get('SESSION["user_email"]')  ): ?>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">You<b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                  <li><a href="/user/<?=$this->get('SESSION["user_name"]'); ?>">Public Profile</a></li>
-                  <li><a href="/auth/user/edit">Edit Profile</a></li>
-                  <li><a href="#" id="signout">Sign out</a></li>
+                    <? if( $this->get('SESSION["user_name"]')  ): ?>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                          <?=$this->get('SESSION["user_name"]'); ?><b class="caret"></b>
+                        </a>                    
+                        <ul class="dropdown-menu">
+                        <li><a href="/user/<?=$this->get('SESSION["user_name"]'); ?>">Public Profile</a></li>
+                        <li><a href="/auth/user/edit">Edit Profile</a></li>
+                    <? else : ?>
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        You<b class="caret"></b>
+                      </a>
+                        <ul class="dropdown-menu">
+                    <? endif; ?>
+                    <li><a href="#" id="signout">Sign out</a></li>
                   </ul>
                 </li>  
               <? else: ?>
