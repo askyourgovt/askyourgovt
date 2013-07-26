@@ -29,7 +29,7 @@ navigator.id.watch({
           url: '/auth/logout', 
           success: function(res, status, xhr) {  
             navigator.id.logout();     
-            window.location.reload(); 
+            window.location.href="/"; 
           },
           error: function(xhr, status, err) { alert("Logout failure: " + err); }
         });
