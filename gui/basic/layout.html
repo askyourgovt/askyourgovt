@@ -1,1 +1,7 @@
-<?= @$this->render('basic/'.$this->get('sub')); ?>
+    <div class="span3">
+		<?= @$this->render('basic/sub_sidebar.php'); ?>
+	</div>
+
+    <div class="span9">
+		<?= @$this->render('basic/'.$this->get('sub')); ?>
+	</div>
