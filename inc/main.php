@@ -9,6 +9,7 @@ class Main extends F3instance {
 		$this->set('LANGUAGE','en-US');		
 		echo $this->render('basic/main.html');
 	}
+
 	function about() {
 		$this->set('title','About');
 		$this->set('sub_title','Know All About AskYourGovt.in');
@@ -18,6 +19,7 @@ class Main extends F3instance {
 		$this->set('LANGUAGE','en-US');		
 		echo $this->render('basic/main.html');
 	}
+
 	function contact() {
 		$this->set('title','Contact');
 		$this->set('sub_title','How to contact AskYourGovt.in');
@@ -104,6 +106,16 @@ class Main extends F3instance {
 	}
 
 
+	function links() {
+		$this->set('title','Links');
+		$this->set('sub_title','All the useful links that you need');
+		$this->set('sub','sub_links.html');
+		$out=$this->render('basic/layout.html');		
+		$this->set('sub_out_put',$out);
+		$this->set('LANGUAGE','en-US');		
+		echo $this->render('basic/main.html');
+	}
+	
 
 	function news() {
 		$page_number = 1;
