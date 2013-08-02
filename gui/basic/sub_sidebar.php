@@ -95,8 +95,9 @@
             <p>The Right Information Act, 2005, has been taken from the <a href="http://rti.gov.in/">Govt. of India website</a>. Please go there for any changes or clarification.</p>
           </div>          
     <? else: ?>
+            <h4>Search Questions</h4>
             <form class="form-horizontal" method="get" action="/questions">
-            <label>Question Status</label>
+            <label>Status</label>
             <select name="status" multiple="multiple">
               <option value=1>Asked</option>
               <option value=2>Answered</option>

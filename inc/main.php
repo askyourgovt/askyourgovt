@@ -2,7 +2,7 @@
 class Main extends F3instance {
 	function home() {
 		$this->set('title','Welcome to AskYourGovt.in');
-		$this->set('sub_title','Repository of Public Interest RTIs');
+		$this->set('sub_title','Community around asking public interest questions.');
 		$this->set('sub','sub_home.html');
 		$out=$this->render('basic/layout.html');		
 		$this->set('sub_out_put',$out);
