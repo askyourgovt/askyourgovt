@@ -34,8 +34,10 @@
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container" >
-
-        <a class="brand" href="/">Ask Your Govt</a>
+            
+        <a class="brand" href="/">
+          <img src="<?= $this->get('BASE'); ?>/gui/img/askyourgovt.gif" width="25px"/>&nbsp;Ask Your Govt
+        </a>
         <div class="nav-collapse">
           <ul class="nav">
            <li class="dropdown">
@@ -99,11 +101,10 @@
 ================================================== -->
 <header class="jumbotron subhead" id="overview">
   <div class="row">
-    <div class="span12">
-      <p>&nbsp;</p><p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
       <h2><?= $this->get('title'); ?></h2>
       <p class="lead"><?= $this->get('sub_title'); ?></p>
-    </div>
   </div>
 
 </header>
@@ -149,6 +150,10 @@
 <footer class="footer" >
       <div class="container">
         <div class="span12">
+          <div class="span2">
+            <img src="<?= $this->get('BASE'); ?>/gui/img/askyourgovt.gif" width="125px"/>
+          </div>
+
           <div class="span3">
               <ul class="nav nav-list bs-docs-sidenav affix-top">
                 <li><a href="/about"><i class="icon-user"></i>&nbsp;About AskYourGovt.IN</a></li>
@@ -176,17 +181,8 @@
                 <li><a href="/faq"><i class="icon-folder-open"></i>&nbsp;Site FAQ</a></li>
               </ul>
           </div>    
-          <!--     
-          <div class="span2">
-              <ul class="nav nav-list bs-docs-sidenav affix-top">
-                <li><a href="http://twitter.com/askyourgovtin"><i class="icon-twitter"></i>&nbsp;1</a></li>
-                <li><a href="/contact"><i class="icon-envelope"></i>&nbsp;1</a></li>
-                <li><a href="#"><i class="icon-youtube"></i>&nbsp;1</a></li>
-                <li><a href="/links"><i class="icon-bookmark"></i>&nbsp;1</a></li>
-              </ul>
-
-          </div>
-        -->
+           
+        
           <div class="span2">
               <ul class="nav nav-list bs-docs-sidenav affix-top">
                 <li><a target="new" href="http://twitter.com/askyourgovtin"><i class="icon-twitter"></i>&nbsp;Twitter</a></li>
@@ -201,13 +197,7 @@
         </div>
 
         <div class="span12">
-          <div class="span4">
-          </div>
-          <div class="span2"><br/>
-            <a href="/constitution/page/7">We, The people of India</a>
-          </div>
-          <div class="span5">
-          </div> 
+          <center>   <a href="/constitution/page/7">We, The people of India</a> </center>
         </div>
 
       </div> <!-- footer container -->
