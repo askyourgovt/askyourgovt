@@ -138,7 +138,7 @@ class Main extends F3instance {
     	//GET RESPONSES
     	$total_number = 0;
     	$RECORDS_PER_PAGE=5;  
-        $sql_query = 'select *  from public_reaction,questions where public_reaction.question_id=questions.question_id order by public_reaction_date desc LIMIT '.$RECORDS_PER_PAGE;
+        $sql_query = 'select *  from public_reaction LEFT JOIN questions on public_reaction.question_id=questions.question_id order by public_reaction_date desc LIMIT  '.$RECORDS_PER_PAGE;
         $OFFSET = ($RECORDS_PER_PAGE*($page_number-1));
         $sql_query=$sql_query." OFFSET ".$OFFSET;
 
