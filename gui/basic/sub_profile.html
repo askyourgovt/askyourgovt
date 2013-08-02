@@ -38,11 +38,18 @@
                 <tr>
                 <td> <a href='<?= $this->get('BASE'); ?>/question/id/<?=$questions_array['question_id']?>'><?=$questions_array['question_title']?></a> 
                 </td>
-                <td> <?=$questions_array['department_name']?> </td>
+                <td> 
+              <? foreach ($questions_array['all_departments'] as  $dept): ?>
+                        <?=$dept['department_name']?>,&nbsp;
+                      <? endforeach; ?>
+
+
+                 </td>
                 <td> <?=$questions_array['status_name']?> </td>
                 </tr>
             <? endforeach; ?>
-                 
+            <? if($user_array['meta_questions_count'] > 5 ) { ?> 
                 <tr><td colspan="3"><b><a href="<?= $this->get('BASE'); ?>/questions?user=<?=$user_array['user_name']?>&page_number=2">View More Questions</a></b></td></tr>
+            <? } ?>
     </tbody>
 </table>

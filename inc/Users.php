@@ -40,6 +40,7 @@ class Users extends F3instance {
         //print $sql_query;
         $ASKYOURGOVT_DB->exec($sql_query, $sql_query_params);
         $offset = 0;
+        $temp_array_all_question =  array();
         foreach (F3::get('ASKYOURGOVT_DB->result') as $row){
             $single_question = array();
             $offset = $offset+1;
@@ -55,16 +56,35 @@ class Users extends F3instance {
             #$single_question['department_name']=   $row["department_name"];
             $single_question['status_id']=   $row["status_id"];
             $single_question['status_name']=   $row["status_name"];
-            $array_all_question[$row["question_id"]]   = $single_question;
+            $temp_array_all_question[$row["question_id"]]   = $single_question;
             ///print $single_question['question_id'];
             if($offset >= 5){
                 break;
             }
         }
 
+        #GET DEPARTMENTS
+        foreach ($temp_array_all_question as $single_question){
+            $sql_query = 'select d.department_id, d.department_name from departments d, question_to_department qtd where d.department_id =qtd.department_id'; 
+            $sql_query = $sql_query . ' and qtd.question_id= :question_id';
+            $sql_query_params = array("question_id"=>$single_question['question_id']);
+            $ASKYOURGOVT_DB->exec($sql_query, $sql_query_params);
+            $all_departments = array();
+            foreach (F3::get('ASKYOURGOVT_DB->result') as $row){
+                $dept = array();                
+                $dept['department_id']= $row["department_id"]; 
+                $dept['department_name']= $row["department_name"];    
+                $all_departments[$dept['department_id']]=$dept;
+            }
+            $single_question['all_departments']=   $all_departments;
+            $array_all_question[$single_question["question_id"]]   = $single_question;
+        }
+
+
         //Get question details
         $this->set('user_array',$user_array);
         $this->set('array_all_question',$array_all_question);
+        $this->set('offset',$offset);
 
         if(sizeof($user_array) > 0){
             $this->set('title',$user_array['user_full_name']);
