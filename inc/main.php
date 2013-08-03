@@ -2,7 +2,7 @@
 class Main extends F3instance {
 	function home() {
 		$this->set('title','Welcome to AskYourGovt.in');
-		$this->set('sub_title','Community around asking public interest questions.');
+		$this->set('sub_title','Community around asking public interest questions.T');
 		$this->set('sub','sub_home.html');
 		$out=$this->render('basic/layout.html');		
 		$this->set('sub_out_put',$out);
@@ -54,7 +54,7 @@ class Main extends F3instance {
 	function rtifaq() {
 		$this->set('title','RTI FAQ');
 		//$this->set('sub_title','Frequently Asked Questions');
-		$this->set('side_bar','faq');
+		$this->set('side_bar','rti_faq');
 		$this->set('sub','sub_rtifaq.html');
 		$out=$this->render('basic/layout.html');		
 		$this->set('sub_out_put',$out);
@@ -65,7 +65,7 @@ class Main extends F3instance {
 	function rtidictionary() {
 		$this->set('title','RTI Dictionary');
 		$this->set('sub_title','A reference list of words, terms, codes, keys, etc., and their meanings, used by RTI Activist.');
-		$this->set('side_bar','dictionary');
+		$this->set('side_bar','rti_dictionary');
 		$this->set('sub','sub_rti_dictionary.html');
 		$out=$this->render('basic/layout.html');		
 		$this->set('sub_out_put',$out);
@@ -116,6 +116,18 @@ class Main extends F3instance {
 		echo $this->render('basic/main.html');
 	}
 	
+	function faq() {
+		$this->set('title','FAQ');
+		//$this->set('sub_title','Frequently Asked Questions');
+		$this->set('side_bar','faq');
+		$this->set('sub','sub_faq.html');
+		$out=$this->render('basic/layout.html');		
+		$this->set('sub_out_put',$out);
+		$this->set('LANGUAGE','en-US');		
+		echo $this->render('basic/main.html');
+	}
+
+
 
 	function news() {
 		$page_number = 1;

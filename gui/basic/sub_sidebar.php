@@ -1,5 +1,5 @@
       <div class="well">
-        <? if( $this->get('side_bar') == 'dictionary' ): ?>
+        <? if( $this->get('side_bar') == 'rti_dictionary' ): ?>
             <div>
                 <div class="span1">
                   <ul class="nav nav-list bs-docs-sidenav affix-top">
@@ -56,12 +56,19 @@
               <p>This book is  one of 1,000 photolithographic reproductions of the Constitution of the Republic of India, which came into effect on January 26, 1950, after being approved by the Constituent Assembly on November 26, 1949. The original of this elaborate edition took nearly five years to produce. It is signed by the framers of the constitution, most of whom are regarded as the founders of the Republic of India. The original of the book is kept in a special helium-filled case in the Library of the Parliament of India. The illustrations represent styles from the different civilizations of the subcontinent, ranging from the prehistoric Mohenjodaro, in the Indus Valley, to the present. The calligraphy in the book was done by Prem Behari Narain Raizda. It was illuminated by Nandalal Bose and other artists, published by Dehra Dun, and photolithographed at the Survey of India Offices.</p>
               Source : <a href="http://www.wdl.org/en/item/2672/">LOC and WDL</a>
 
-    <?  elseif( $this->get('side_bar') == 'faq' ): ?>
+    <?  elseif( $this->get('side_bar') == 'rti_faq' ): ?>
           <div class="bs-docs-sidebar">
             <ul class="nav nav-list bs-docs-sidenav affix-top">
               <li><a href="#about_rti_act"><i class="icon-chevron-right"></i> About RTI Act</a></li>
               <li><a href="#rti_application"><i class="icon-chevron-right"></i> RTI Application Process</a></li>
               <li><a href="#appeal_process"><i class="icon-chevron-right"></i> Appeal Process</a></li>
+            </ul>
+          </div>
+    <?  elseif( $this->get('side_bar') == 'faq' ): ?>
+          <div class="bs-docs-sidebar">
+            <ul class="nav nav-list bs-docs-sidenav affix-top">
+              <li><a href="#about"><i class="icon-chevron-right"></i> About</a></li>
+              <li><a href="#exploring_ayg"><i class="icon-chevron-right"></i> Exploring AskYourGovt.IN</a></li>
             </ul>
           </div>
     <?  elseif( $this->get('side_bar') == 'rti-act' ): ?>
