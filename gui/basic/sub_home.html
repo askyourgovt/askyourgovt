@@ -1,3 +1,6 @@
+<? $all_reactions = $this->get('all_public_reactions'); ?>
+<? $top_questions = $this->get('top_questions'); ?>
+
 <div  class="span5">
 	<div class="well">
 			AskYourGovt.in is a community around asking public interest questions. Start by knowing about RTI, How to Ask, Browse RTI requests and Responses or by reading public reactions. 
@@ -20,27 +23,12 @@
                 <tr>
                     <td><h4>Most Popular Questions</h4></td>
                 </tr>
+                <? foreach ($top_questions as $question): ?>
                   <tr>
-                      <td><i class="icon-book"></i>&nbsp;<a href="/document/id/30">Complaint filed by ADR to CIC</a></td>
+                      <td><i class="icon-book"></i>&nbsp;<a href="/question/id/<?=$question['question_id']?>"> <?=$question['question_title']?> </a></td>
                   </tr>
-                      <tr>
-                      <td><i class="icon-book"></i>&nbsp;<a href="/document/id/31">Why Political Parties should come under RTI Act (English)</a></td>
-                  </tr>
-                      <tr>
-                      <td><i class="icon-book"></i>&nbsp;<a href="/document/id/31">Why Political Parties should come under RTI Act (English)</a></td>
-                  </tr>
-                  <tr>
-                      <td><i class="icon-book"></i>&nbsp;<a href="/document/id/31">Why Political Parties should come under RTI Act (English)</a></td>
-                  </tr>
-                  <tr>
-                      <td><i class="icon-book"></i>&nbsp;<a href="/document/id/31">Why Political Parties should come under RTI Act (English)</a></td>
-                  </tr>
-                 <tr>
-                      <td><a href="/news"><b>More</b></a></td>
-                  </tr>
-
-
                 </tbody>
+                <? endforeach; ?>
 	</table>
 
 
@@ -51,28 +39,18 @@
                 <tr>
                     <td><h4>RTI News Stream</h4></td>
                 </tr>
+                <? foreach ($all_reactions as  $all_reaction_array): ?>
                   <tr>
-                      <td><i class="icon-book"></i>&nbsp;<a href="/document/id/30">Complaint filed by ADR to CIC</a></td>
+                      <td><i class="icon-comments"></i><a href="<?=$all_reaction_array['public_reaction_text']; ?>">
+                        <b><?=$all_reaction_array['public_reaction_title'];?></b></a>
+                        <br> <i class="icon-calendar"></i> <?=$all_reaction_array['public_reaction_date'];?>
+                      </td>
                   </tr>
-                      <tr>
-                      <td><i class="icon-book"></i>&nbsp;<a href="/document/id/31">Why Political Parties should come under RTI Act (English)</a></td>
-                  </tr>
-                      <tr>
-                      <td><i class="icon-book"></i>&nbsp;<a href="/document/id/31">Why Political Parties should come under RTI Act (English)</a></td>
-                  </tr>
-                  <tr>
-                      <td><i class="icon-book"></i>&nbsp;<a href="/document/id/31">Why Political Parties should come under RTI Act (English)</a></td>
-                  </tr>
-                  <tr>
-                      <td><i class="icon-book"></i>&nbsp;<a href="/document/id/31">Why Political Parties should come under RTI Act (English)</a></td>
-                  </tr>
-                 <tr>
-                      <td><a href="/news"><b>More</b></a></td>
-                  </tr>
-
+                <? endforeach; ?>
 
                 </tbody>
               </table>
+              <!--
 				<table class="table table-striped table-bordered">
                 <tbody>
                 <tr>
@@ -91,6 +69,6 @@
 
                 </tbody>
               </table>
-
+            -->
 
 </div>
