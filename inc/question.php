@@ -98,7 +98,7 @@ class Question extends F3instance {
             }
         }
 
-        $RECORDS_PER_PAGE=5;   
+        $RECORDS_PER_PAGE=10;   
         $total_number=0;
         $sql_query=$sql_query." order by questions.date_asked desc LIMIT ".$RECORDS_PER_PAGE;
         $OFFSET = ($RECORDS_PER_PAGE*($page_number-1));

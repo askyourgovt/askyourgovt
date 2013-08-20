@@ -24,11 +24,16 @@
                     <td><h4>Most Popular Questions</h4></td>
                 </tr>
                 <? foreach ($top_questions as $question): ?>
-                  <tr>
-                      <td><i class="icon-book"></i>&nbsp;<a href="/question/id/<?=$question['question_id']?>"> <?=$question['question_title']?> </a></td>
-                  </tr>
-                </tbody>
+                    <tr>
+                        <td><i class="icon-book"></i>&nbsp;<a href="/question/id/<?=$question['question_id']?>"> <?=$question['question_title']?> </a></td>
+                    </tr>
                 <? endforeach; ?>
+                  <tr>
+                      <td style="text-align: right;"><b><a href="/questions">More&nbsp;&gt;&gt;</a></b></td>
+                  </tr>
+
+                </tbody>
+
 	</table>
 
 
@@ -42,12 +47,14 @@
                 <? foreach ($all_reactions as  $all_reaction_array): ?>
                   <tr>
                       <td><i class="icon-comments"></i><a href="<?=$all_reaction_array['public_reaction_text']; ?>">
-                        <b><?=$all_reaction_array['public_reaction_title'];?></b></a>
+                        <?=$all_reaction_array['public_reaction_title'];?></a>
                         <br> <i class="icon-calendar"></i> <?=$all_reaction_array['public_reaction_date'];?>
                       </td>
                   </tr>
                 <? endforeach; ?>
-
+                  <tr>
+                      <td style="text-align: right;"><b><a href="/news">More&nbsp;&gt;&gt;</a></b></td>
+                  </tr>
                 </tbody>
               </table>
               <!--
