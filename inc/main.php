@@ -3,6 +3,46 @@ class Main extends F3instance {
 	function home() {
 		$this->set('title','Welcome to AskYourGovt.in');
 		$this->set('sub_title','Community around asking public interest questions.');
+
+        $all_public_reactions = array();
+        $sql_query = 'select *  from public_reaction order by public_reaction_date desc LIMIT  5 ';
+        $ASKYOURGOVT_DB=F3::get('ASKYOURGOVT_DB');
+        $ASKYOURGOVT_DB->exec($sql_query);
+        
+        foreach (F3::get('ASKYOURGOVT_DB->result') as $row){
+            $doc = array();          
+            $doc['public_reaction_id']= $row["public_reaction_id"];    
+            $doc['public_reation_type_id']= $row["public_reation_type_id"];
+            $doc['public_reaction_text']= $row["public_reaction_text"];
+            $doc['public_reaction_title']= $row["public_reaction_title"];
+            $doc['public_reaction_note']= Markdown($row["public_reaction_note"]);
+            $doc['public_reaction_date']= $row["public_reaction_date"];
+            $all_public_reactions[$doc['public_reaction_id']] =$doc;
+        }
+		$this->set('all_public_reactions', $all_public_reactions);
+
+
+
+
+
+        $sql_query="select * from questions order by questions.date_asked desc LIMIT 5";
+        $ASKYOURGOVT_DB->exec($sql_query);
+        $temp_array_all_question =  array();
+        foreach (F3::get('ASKYOURGOVT_DB->result') as $row){
+            $single_question = array();
+            $single_question['question_id']= $row["question_id"];    
+            $single_question['question_title']= $row["question_title"];
+            $single_question['question_short_title']= $row["question_short_title"];
+            $single_question['question_text']=  ($row["question_text"]);    
+            $single_question['date_asked']=   $row["date_asked"];
+            $single_question['status_id']=   $row["status_id"];
+            $temp_array_all_question[$row["question_id"]]   = $single_question;
+        }
+
+
+        $this->set('top_questions',$temp_array_all_question);
+
+
 		$this->set('sub','sub_home.html');
 		$out=$this->render('basic/layout.html');		
 		$this->set('sub_out_put',$out);
@@ -54,7 +94,7 @@ class Main extends F3instance {
 	function rtifaq() {
 		$this->set('title','RTI FAQ');
 		//$this->set('sub_title','Frequently Asked Questions');
-		$this->set('side_bar','faq');
+		$this->set('side_bar','rti_faq');
 		$this->set('sub','sub_rtifaq.html');
 		$out=$this->render('basic/layout.html');		
 		$this->set('sub_out_put',$out);
@@ -65,7 +105,7 @@ class Main extends F3instance {
 	function rtidictionary() {
 		$this->set('title','RTI Dictionary');
 		$this->set('sub_title','A reference list of words, terms, codes, keys, etc., and their meanings, used by RTI Activist.');
-		$this->set('side_bar','dictionary');
+		$this->set('side_bar','rti_dictionary');
 		$this->set('sub','sub_rti_dictionary.html');
 		$out=$this->render('basic/layout.html');		
 		$this->set('sub_out_put',$out);
@@ -116,6 +156,18 @@ class Main extends F3instance {
 		echo $this->render('basic/main.html');
 	}
 	
+	function faq() {
+		$this->set('title','FAQ');
+		//$this->set('sub_title','Frequently Asked Questions');
+		$this->set('side_bar','faq');
+		$this->set('sub','sub_faq.html');
+		$out=$this->render('basic/layout.html');		
+		$this->set('sub_out_put',$out);
+		$this->set('LANGUAGE','en-US');		
+		echo $this->render('basic/main.html');
+	}
+
+
 
 	function news() {
 		$page_number = 1;
