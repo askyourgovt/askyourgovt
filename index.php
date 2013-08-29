@@ -43,6 +43,8 @@ $app->route('GET /faq','Main->faq');
 
 $app->route('GET /questions','Question->questions');
 $app->route('GET /ask','Question->ask');
+$app->route('POST /ask','Question->ask');
+
 $app->route('GET /question/id/@question_id','Question->question_by_id');
 $app->route('GET /question/id/@question_id/@tab','Question->question_by_id');
 

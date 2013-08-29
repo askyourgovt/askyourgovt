@@ -3,12 +3,18 @@
 class Question extends F3instance {
     function ask() {
         $this->set('title', 'Ask Questions');
-        $this->set('sub','sub_ask.html');
+        if(array_key_exists('ask',$_POST)){
+             mail("askyourgovt@thejeshgn.com" , "[AYG] Question submitted" , $_POST['question']); 
+            $this->set('sub','sub_ask_thankyou.html');                    
+        }else{
+            $this->set('sub','sub_ask.html');            
+        }
         $out=$this->render('basic/layout.html');
         $this->set('sub_out_put',$out);
         $this->set('LANGUAGE','en-US');     
         echo $this->render('basic/main.html');   
     }
+
     function questions() {
         $query = array();
         $query_string = "";
