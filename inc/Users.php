@@ -18,6 +18,7 @@ class Users extends F3instance {
             $user_array['type'] = $row['type'];
             $user_array['website'] = $row['website'];
             $user_array['phone'] = $row['phone'];
+            $user_array['email'] = $row['email'];
             $user_array['address'] = $row['address'];
             $user_array['about'] = Markdown($row['about']);
             $user_array['picture_url'] = $row['picture_url'];

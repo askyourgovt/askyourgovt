@@ -3,7 +3,11 @@
         <table class="table table-striped table-bordered">
             <tbody>
                 <tr>
-                    <td><?=$user_array['about']?> </td>
+                        <?
+                        $gravemail = md5( strtolower( trim( $user_array['email'] ) ) );
+                        ?>
+                    <td><img style="float:left;  background-color:#0B5BAE;border-radius:10px;  margin:10px;" src="http://www.gravatar.com/avatar/<?=$gravemail; ?>" />
+<?=$user_array['about']?> </td>
                 </tr>
                 <tr>
                     <td><b>Website:</b>&nbsp; <a href="<?=$user_array['website']?>"><?=$user_array['website']?></a> </td>
