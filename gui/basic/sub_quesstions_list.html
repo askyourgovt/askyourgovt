@@ -1,6 +1,5 @@
 <table class="table table-striped table-bordered">
     <thead>
-        <th>Sl</th>
         <th> Title </th>
         <th> Department </th>
         <th> Status </th>
@@ -11,7 +10,6 @@
     <? foreach ($this->get('array_all_question') as $questions=>$questions_array): ?>
     <tbody>
             <tr>
-            <td><?=$questions_array['question_seq_num']?> </td>
             <td> <a href='<?= $this->get('BASE'); ?>/question/id/<?=$questions_array['question_id']?>'><?=$questions_array['question_title']?></a> 
             </td>
             <td> 
