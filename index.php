@@ -8,9 +8,8 @@ $app->set('top_menu',
 	array(
         'questions'=>'Questions',
         'ask'=>'Ask',
-        'news'=>'News Stream',
-		'contact'=>'Contact'
-	)
+        'news'=>'News Stream'
+        )
 );
 
 $app->set('side_menu',
