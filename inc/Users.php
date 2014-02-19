@@ -18,6 +18,7 @@ class Users extends F3instance {
             $user_array['type'] = $row['type'];
             $user_array['website'] = $row['website'];
             $user_array['phone'] = $row['phone'];
+            $user_array['email'] = $row['email'];
             $user_array['address'] = $row['address'];
             $user_array['about'] = Markdown($row['about']);
             $user_array['picture_url'] = $row['picture_url'];
@@ -111,12 +112,13 @@ function login(){
             $session = $this->set('SESSION["user_email"]', $result->email);
             $this->set('SESSION["user_name"]', NULL);
 
-            $sql_query = 'select user_name from user where email=:email';
+            $sql_query = 'select user_name, user_role from user where email=:email';
             $sql_query_params = array("email"=> $result->email );
             $ASKYOURGOVT_DB=F3::get('ASKYOURGOVT_DB');
             $ASKYOURGOVT_DB->exec($sql_query, $sql_query_params);
             foreach (F3::get('ASKYOURGOVT_DB->result') as $row){
                 $this->set('SESSION["user_name"]', $row['user_name']);
+                $this->set('SESSION["user_role"]', $row['user_role']);
             }
             echo $result->email;
         } else {

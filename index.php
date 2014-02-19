@@ -8,9 +8,8 @@ $app->set('top_menu',
 	array(
         'questions'=>'Questions',
         'ask'=>'Ask',
-        'news'=>'News Stream',
-		'contact'=>'Contact'
-	)
+        'news'=>'News Stream'
+        )
 );
 
 $app->set('side_menu',
@@ -43,6 +42,8 @@ $app->route('GET /faq','Main->faq');
 
 $app->route('GET /questions','Question->questions');
 $app->route('GET /ask','Question->ask');
+$app->route('POST /ask','Question->ask');
+
 $app->route('GET /question/id/@question_id','Question->question_by_id');
 $app->route('GET /question/id/@question_id/@tab','Question->question_by_id');
 

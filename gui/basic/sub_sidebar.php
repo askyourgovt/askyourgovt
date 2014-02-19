@@ -129,6 +129,9 @@
               <option value=12>Department of Food and Public Distribution</option>
               <option value=13>Election Commision of India</option>
               <option value=15>Prime Minister’s Office</option>
+              <option value=16>HCI London</option>
+              <option value=17>Ministry of Kannada and Culture</option>
+              <option value=18>Hampi University</option>
 
             </select>
             <br/><br/>
